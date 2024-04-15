@@ -6,8 +6,7 @@ export const MoviesList = () => {
   console.log("🚀 ~ MoviesList ~ movies:", movies);
 
   return (
-    <div>
-      MoviesList
+    <div className="flex flex-wrap justify-center items-center gap-16 p-7">
       {movies.map((item, index) => (
         <Movie key={index} item={item} />
       ))}
