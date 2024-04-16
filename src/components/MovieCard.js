@@ -11,7 +11,7 @@ const Movie = () => {
                 src="https://m.media-amazon.com/images/M/MV5BMzI0NmVkMjEtYmY4MS00ZDMxLTlkZmEtMzU4MDQxYTMzMjU2XkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_QL75_UX380_CR0,1,380,562_.jpg"
                 width="375"
                 height="200"
-                class="rounded-t-3xl justify-center grid h-80 object-cover"
+                className="rounded-t-3xl justify-center grid h-80 object-cover"
                 alt="movie.title"
             />
             <div className='flex flex-col justify-start items-start gap-2 p-5'>
