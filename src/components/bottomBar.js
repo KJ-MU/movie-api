@@ -19,6 +19,7 @@ const BottomBar = () => {
         </div>
         <div className="flex flex-col">
           <BsPerson className="self-center size-7" />
+          {}
         </div>
       </div>
     </div>
