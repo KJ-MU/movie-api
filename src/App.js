@@ -11,6 +11,7 @@ import Carousel from "./components/Carousel";
 function App() {
   // const movies = useSelector((state) => state.movies);
   const nowPlaying = useSelector((state) => state.nowPlaying);
+  console.log("🚀 ~ App ~ nowPlaying:", nowPlaying);
   const popular = useSelector((state) => state.popular);
   const topRated = useSelector((state) => state.topRated);
   const upComing = useSelector((state) => state.upComing);
