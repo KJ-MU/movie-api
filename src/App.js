@@ -9,6 +9,8 @@ import { getMovies } from "./store";
 import { MoviesList } from "./components/MoviesList";
 
 import Carousel from "./components/Carousel";
+import NavBar from "./components/NavBar";
+import BottomBar from "./components/bottomBar";
 function App() {
   // const movies = useSelector((state) => state.movies);
   const nowPlaying = useSelector((state) => state.nowPlaying);
@@ -27,11 +29,11 @@ function App() {
 
   return (
     <div>
-      <header>
-        {/* <MovieCarousel slides={popular} /> */}
-        {/* <MoviesList /> */}
-        <Carousel />
-      </header>
+      <NavBar />
+      {/* <MovieCarousel slides={popular} /> */}
+      {/* <MoviesList /> */}
+      <Carousel />
+      <BottomBar />
     </div>
   );
 }
