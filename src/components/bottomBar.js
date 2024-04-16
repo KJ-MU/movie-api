@@ -6,7 +6,7 @@ import { BiCameraMovie } from "react-icons/bi";
 
 const BottomBar = () => {
   return (
-    <div className="bg-[#1C2026] h-16 flex justify-between lg:hidden">
+    <div className="bg-[#1C2026] fixed bottom-0 w-full h-16 flex justify-between lg:hidden">
       <div className="w-full text-white flex justify-around self-center">
         <div className="flex flex-col">
           <GrHomeRounded className="self-center size-7" />
@@ -19,7 +19,6 @@ const BottomBar = () => {
         </div>
         <div className="flex flex-col">
           <BsPerson className="self-center size-7" />
-          {}
         </div>
       </div>
     </div>

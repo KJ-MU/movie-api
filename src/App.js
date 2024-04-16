@@ -32,7 +32,7 @@ function App() {
       <NavBar />
       {/* <MovieCarousel slides={popular} /> */}
       {/* <MoviesList /> */}
-      <Carousel />
+      {/* <Carousel /> */}
       <BottomBar />
     </div>
   );
