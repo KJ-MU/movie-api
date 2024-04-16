@@ -1,11 +1,12 @@
 import "./App.css";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import "./App.css";
+import "./slider.css";
 import { useEffect } from "react";
-import { getNowPlaying } from "./store";
-import { getPopular } from "./store";
-import { getUpComing } from "./store";
-import { getTopRated } from "./store";
+import { getNowPlaying, getUpComing, getPopular, getTopRated } from "./store";
+import MovieCarousel from "./components/MovieCarousel";
+import { useSelector, useDispatch } from "react-redux";
+import { getMovies } from "./store";
+import { MoviesList } from "./components/MoviesList";
 
 import Carousel from "./components/Carousel";
 function App() {
@@ -27,6 +28,8 @@ function App() {
   return (
     <div>
       <header>
+        {/* <MovieCarousel slides={popular} /> */}
+        {/* <MoviesList /> */}
         <Carousel />
       </header>
     </div>

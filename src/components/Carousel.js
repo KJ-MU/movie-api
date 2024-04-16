@@ -1,7 +1,7 @@
 // import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { useSelector } from "react-redux";
-import Movie from "./Movie";
+import Movie from "./MovieCard";
 import "../App.css";
 import { useState } from "react";
 const Carousel = () => {
