@@ -8,13 +8,14 @@ const MovieDetails = ({ movie }) => {
         <div className='bg-[#1C2026]'>
             <div className="" >
                 <div style={{ '--image-url': `url(https://image.tmdb.org/t/p/w500${movie.backdrop_path})` }}
-                    className="w-full h-[80vh] bg-[image:var(--image-url)] bg-no-repeat bg-cover">
-                    <div className='bg-black bg-opacity-70 h-[80vh] flex justify-center'>
-                        <div className='w-3/5 flex justify-center items-center gap-10 text-white'>
-                            <div className='flex flex-col justify-center items-center gap-2'>
+                    className="w-full lg:h-[80vh] bg-[image:var(--image-url)] bg-no-repeat bg-cover">
+                    <div className='bg-black bg-opacity-70 lg:h-[80vh] flex justify-center flex-wrap shrink-0'>
+                        <div className='py-10 w-3/5 flex flex-col items-start lg:flex-row  lg:items-center justify-center gap-10 text-white'>
+                            <div className='flex flex-col justify-center items-start lg:items-center  gap-2'>
                                 <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                     width={300}
                                     alt=''
+                                    className='rounded-xl'
                                 />
                                 <button className='w-[300px] px-3 py-1 bg-[#1B6F93] rounded-lg'>Trailer</button>
                                 <button className='w-[300px] px-3 py-1 bg-[#1B6F93] rounded-lg'>Save</button>
