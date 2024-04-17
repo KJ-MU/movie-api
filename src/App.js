@@ -28,7 +28,8 @@ function App() {
   return (
     <div>
       <NavBar />
-      <MovieCarousel slides={popular} />
+      {/* <MovieCarousel slides={popular} /> */}
+      {/* <MoviesList /> */}
       <Carousel />
       <BottomBar />
     </div>
