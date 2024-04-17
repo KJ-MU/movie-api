@@ -10,7 +10,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="bg-[#1C2026] sticky top-0  w-full h-16 flex justify-between lg:justify-around">
+    <div className="bg-[#1C2026] sticky border-b-2 top-0 z-10  w-full h-16 flex justify-between lg:justify-around">
       <div className="flex justify-center self-center text-xl text-white ml-3">
         EML
       </div>
