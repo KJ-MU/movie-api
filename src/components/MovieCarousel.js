@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard";
 
 function MovieCarousel({ slides }) {
     return (
-        <div id="movie-slider" className="h-fit lg:h-[80vh]">
+        <div id="movie-slider" className=" h-fit lg:h-[80vh]">
             <Carousel indicators={false}>
                 {slides.map((item, index) => (
                     <div className="w-full" key={index}>

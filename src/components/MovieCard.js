@@ -5,8 +5,6 @@ import MovieDetails from "./MovieDetails";
 import { Link } from "react-router-dom";
 const MovieURL = "/movieDetails/id:";
 
-
-
 const MovieCard = ({ item }) => {
 
   return (

@@ -12,6 +12,8 @@ const initialState = {
   movieDetails: {},
   movieCast: [],
   castDetails: {},
+  director: {},
+  trailer: "",
 };
 const BASE_URL = "https://api.themoviedb.org/3/";
 const API_KEY = "51b15414097474cf95e6f8917f62ca5e";
@@ -32,6 +34,10 @@ function moviesReducer(state = initialState, action) {
       return { ...state, movieCast: action.payload };
     case "castDetails/fetch":
       return { ...state, castDetails: action.payload };
+    case "director/fetch":
+      return { ...state, director: action.payload };
+    case "trailer/fetch":
+      return { ...state, trailer: action.payload };
     default:
       break;
   }
@@ -39,6 +45,34 @@ function moviesReducer(state = initialState, action) {
   return state;
 }
 const store = createStore(moviesReducer, applyMiddleware(thunk));
+
+export function getTrailer(id) {
+  return async (dispatch) => {
+    try {
+      const res = await fetch(`${BASE_URL}movie/${id}/videos?api_key=${API_KEY}`);
+      const data = await res.json();
+      console.log("🚀 ~ return ~ data:", data)
+      const trailer = "https://www.youtube.com/embed/" + data.results[0].key;
+      console.log(trailer);
+      dispatch({ type: "trailer/fetch", payload: trailer });
+    } catch (error) {
+      console.error("Error fetching director:", error);
+    }
+  };
+}
+
+export function getDirector(id) {
+  return async (dispatch) => {
+    try {
+      const res = await fetch(`${BASE_URL}movie/${id}/credits?api_key=${API_KEY}`);
+      const data = await res.json();
+      const director = data.crew.filter(({ job }) => job === 'Director');
+      dispatch({ type: "director/fetch", payload: director });
+    } catch (error) {
+      console.error("Error fetching director:", error);
+    }
+  };
+}
 
 export function getCastDetails(id) {
   return async (dispatch) => {

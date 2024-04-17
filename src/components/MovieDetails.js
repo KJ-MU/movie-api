@@ -1,21 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaStar } from "react-icons/fa6";
 import ActorCard from './ActorCard';
-import { getMovieDetails, getMovieCast } from '../store';
+import { getMovieDetails, getMovieCast, getDirector, getTrailer } from '../store';
 import { useParams } from 'react-router-dom';
 
 const MovieDetails = (props) => {
+    const [isShown, setIsShown] = useState(false)
+
     const { id } = useParams();
-    console.log(id);
     const movieDetails = useSelector((state) => state.movieDetails);
     const movieCast = useSelector((state) => state.movieCast);
+    const director = useSelector((state) => state.director);
+    const trailer = useSelector((state) => state.trailer);
+    console.log(trailer);
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (id) {
             dispatch(getMovieDetails(id));
-            dispatch(getMovieCast(id))
+            dispatch(getMovieCast(id));
+            dispatch(getDirector(id));
+            dispatch(getTrailer(id));
         }
     }, [dispatch, id]);
     return (
@@ -31,19 +37,20 @@ const MovieDetails = (props) => {
                                     alt=''
                                     className='rounded-xl'
                                 />
-                                <button className='w-[300px] px-3 py-1 bg-[#1B6F93] rounded-lg'>Trailer</button>
+                                <button onClick={() => setIsShown(!isShown)} className='w-[300px] px-3 py-1 bg-[#1B6F93] rounded-lg'>Trailer</button>
                                 <button className='w-[300px] px-3 py-1 bg-[#1B6F93] rounded-lg'>Save</button>
-
                             </div>
                             <div className='flex flex-col justify-center items-start gap-2 text-white text-start'>
                                 <h1 className='p-1 text-5xl'>{movieDetails.original_title}</h1>
                                 <p className='p-1'>{movieDetails.overview}</p>
+                                {/* <p className='p-1'>Director: {director[0].name}</p> */}
+
                                 <div className='p-1 flex justify-start items-center gap-2'>
-                                    <span>Rating: {movieDetails.vote_average}</span>
+                                    <span>Rating: {parseFloat(movieDetails.vote_average).toFixed(1)}</span>
                                     <FaStar color='#FFE234' />
                                 </div>
                                 <p className='p-1'>Release date: {movieDetails.release_date}</p>
-                                <p className='p-1 text-start'>Duration: {movieDetails.runtime} minutes</p>
+                                <p className='p-1'>Duration: {movieDetails.runtime} minutes</p>
                                 <div className='flex gap-1'>
                                     {
                                         movieDetails.genres && movieDetails.genres.map((genre) => {
@@ -58,10 +65,12 @@ const MovieDetails = (props) => {
             </div>
             <div id='actors-section' className='flex justify-center py-10'>
                 <div className='w-3/5 '>
+                    {isShown && <iframe title="movie trailer" width="420" height="345" src={trailer} />}
+
                     <h1 className='text-white text-3xl px-1 pb-5 text-start'>Actors</h1>
                     <div className='flex flex-wrap shrink-0 gap-5'>
                         {
-                            movieCast.map((actor, index) => {
+                            movieCast.slice(0, 5).map((actor, index) => {
                                 return <ActorCard actor={actor} key={index} />
                             })
                         }

@@ -20,7 +20,7 @@ const ActorDetails = () => {
                     <div className='bg-black bg-opacity-70 lg:h-[80vh] flex justify-center flex-wrap shrink-0'>
                         <div className='py-10 w-3/5 flex flex-col items-start lg:flex-row  lg:items-center justify-center gap-10 text-white'>
                             <div className='flex flex-col justify-center items-start lg:items-center  gap-2'>
-                                <img src={`https://image.tmdb.org/t/p/w500${castDetails.profile}`}
+                                <img src={`https://image.tmdb.org/t/p/w500${castDetails.profile_path}`}
                                     width={300}
                                     alt=''
                                     className='rounded-xl'
@@ -30,7 +30,7 @@ const ActorDetails = () => {
                                 <h1 className='p-1 text-5xl'>{castDetails.name}</h1>
                                 <p className='p-1'>{castDetails.overview}</p>
                                 <p className='p-1'>Birthday: {castDetails.birthday}</p>
-                                <p className='p-1 text-start'>Origin {castDetails.place_of_birth} minutes</p>
+                                <p className='p-1 text-start'>Origin {castDetails.place_of_birth}</p>
                                 <div className='flex gap-1'>
                                     {
                                         castDetails.genres && castDetails.genres.map((genre) => {
