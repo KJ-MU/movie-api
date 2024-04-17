@@ -43,7 +43,9 @@
 
 .carousel__container {
   display: flex;
+  align-items: center;
   transition: transform 0.09s ease; /* Smooth transition for slide movement */
+  height: 450px;
   overflow: hidden;
 }
 
@@ -52,6 +54,7 @@
   margin-right: 10px;
   min-width: 200px; /* Adjust the minimum width of each slide */
   transition: transform 0.09s ease; /* Smooth transition for slide movement */
+
   overflow: hidden;
 }
 

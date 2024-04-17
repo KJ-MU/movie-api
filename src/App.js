@@ -9,14 +9,13 @@ import Carousel from "./components/Carousel";
 import NavBar from "./components/NavBar";
 import BottomBar from "./components/bottomBar";
 import MovieDetails from "./components/MovieDetails";
-import Navbar from "flowbite-react";
-import MovieCard from "./components/MovieCard";
-import ActorDetails from "./components/ActorDetails";
 
+import ActorDetails from "./components/ActorDetails";
+import { HomePage } from "./components/HomePage";
 function App() {
   const movies = useSelector((state) => state.movies);
   const nowPlaying = useSelector((state) => state.nowPlaying);
-  const popular = useSelector((state) => state.popular);
+
   const topRated = useSelector((state) => state.topRated);
   const upComing = useSelector((state) => state.upComing);
   const dispatch = useDispatch();
@@ -32,15 +31,13 @@ function App() {
     <div>
       <NavBar />
       <Routes>
-        <Route path="/" element={<MovieCarousel slides={popular} />} />
+        {/* <Route path="/" element={<MovieCarousel slides={popular} />} /> */}
+        <Route path="/" element={<HomePage />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
         <Route path="/actor/:id" element={<ActorDetails />} />
-
-        {/* Other routes... */}
+        {/* <Carousel /> */}
       </Routes>
-      <MovieCarousel slides={popular} />
-      {/* <MoviesList /> */}
-      <Carousel />
+
       <BottomBar />
     </div>
   );
