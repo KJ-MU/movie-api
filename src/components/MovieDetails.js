@@ -4,8 +4,9 @@ import { FaStar } from "react-icons/fa6";
 import ActorCard from './ActorCard';
 import { getMovieDetails, getMovieCast, getDirector, getTrailer } from '../store';
 import { useParams } from 'react-router-dom';
+import { bookmark } from '../bookmark';
 
-const MovieDetails = (props) => {
+const MovieDetails = () => {
     const [isShown, setIsShown] = useState(false)
 
     const { id } = useParams();
@@ -15,6 +16,12 @@ const MovieDetails = (props) => {
     const trailer = useSelector((state) => state.trailer);
     console.log(trailer);
     const dispatch = useDispatch();
+
+    const handleBookmark = () => {
+        bookmark.push(movieDetails);
+        console.log("🚀 ~ handleBookmark ~ bookmark:", bookmark)
+
+    }
 
     useEffect(() => {
         if (id) {
@@ -38,7 +45,7 @@ const MovieDetails = (props) => {
                                     className='rounded-xl'
                                 />
                                 <button onClick={() => setIsShown(!isShown)} className='w-[300px] px-3 py-1 bg-[#1B6F93] rounded-lg'>Trailer</button>
-                                <button className='w-[300px] px-3 py-1 bg-[#1B6F93] rounded-lg'>Save</button>
+                                <button onClick={() => handleBookmark} className='w-[300px] px-3 py-1 bg-[#1B6F93] rounded-lg'>Save</button>
                             </div>
                             <div className='flex flex-col justify-center items-start gap-2 text-white text-start'>
                                 <h1 className='p-1 text-5xl'>{movieDetails.original_title}</h1>

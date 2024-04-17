@@ -5,11 +5,6 @@ import { Routes, Route } from "react-router-dom";
 import { getNowPlaying, getUpComing, getPopular, getTopRated } from "./store";
 import MovieCarousel from "./components/MovieCarousel";
 import { useSelector, useDispatch } from "react-redux";
-<<<<<<< HEAD
-import { MoviesList } from "./components/MoviesList";
-=======
-
->>>>>>> 20c41033d918a189e8d0d77ce60d4bd352a9be2e
 import Carousel from "./components/Carousel";
 import NavBar from "./components/NavBar";
 import BottomBar from "./components/bottomBar";
@@ -36,7 +31,6 @@ function App() {
   return (
     <div>
       <NavBar />
-<<<<<<< HEAD
       <Routes>
         <Route path="/" element={<MovieCarousel slides={popular} />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
@@ -44,12 +38,10 @@ function App() {
 
         {/* Other routes... */}
       </Routes>
-=======
       <MovieCarousel slides={popular} />
       {/* <MoviesList /> */}
       <Carousel />
       <BottomBar />
->>>>>>> 20c41033d918a189e8d0d77ce60d4bd352a9be2e
     </div>
   );
 }
