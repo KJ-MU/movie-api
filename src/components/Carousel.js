@@ -17,7 +17,7 @@ const Carousel = () => {
   const upComing = useSelector((state) => state.upComing);
 
   return (
-    <div className="mt-20 flex flex-col justify-start items-start gap-10">
+    <div className="mt-20 flex flex-col justify-start items-start gap-10 overflow-hidden">
       <p className=" font-bold text-2xl  px-5">Now Playing</p>
       <div className="carousel" ref={nowPlayingViewportRef}>
         <div className="carousel__container">
