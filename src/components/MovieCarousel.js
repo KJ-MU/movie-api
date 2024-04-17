@@ -16,7 +16,7 @@ function MovieCarousel({ slides }) {
                 }}
                 className="w-full  bg-[image:var(--image-url)] bg-no-repeat rounded-none bg-cover"
               >
-                <div className="bg-black bg-opacity-70 rounded-none h-[80vh] top-0 flex justify-center items-center p-10">
+                <div className="bg-black bg-opacity-60 rounded-none h-[80vh] top-0 flex justify-center items-center p-10">
                   <div className="w-3/5 py-10 flex flex-col items-center xl:flex-row justify-center gap-10">
                     <img
                       src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
