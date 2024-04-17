@@ -5,8 +5,6 @@ import { useEffect } from "react";
 import { getNowPlaying, getUpComing, getPopular, getTopRated } from "./store";
 import MovieCarousel from "./components/MovieCarousel";
 import { useSelector, useDispatch } from "react-redux";
-import { getMovies } from "./store";
-import { MoviesList } from "./components/MoviesList";
 
 import Carousel from "./components/Carousel";
 import NavBar from "./components/NavBar";
@@ -30,8 +28,7 @@ function App() {
   return (
     <div>
       <NavBar />
-      {/* <MovieCarousel slides={popular} /> */}
-      {/* <MoviesList /> */}
+      <MovieCarousel slides={popular} />
       <Carousel />
       <BottomBar />
     </div>
