@@ -17,7 +17,7 @@ const NavBar = () => {
       <nav className="hidden w-1/2 lg:flex justify-center self-center">
         <ul className="flex w-full justify-center gap-20 list-none text-white">
           <li>Home</li>
-          <li>Movies</li>
+          <li>Genre</li>
           <li>Actors</li>
           <li>About</li>
         </ul>
