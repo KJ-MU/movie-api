@@ -1,4 +1,5 @@
 import { Carousel } from "flowbite-react";
+import MovieCard from "./MovieCard";
 
 function MovieCarousel({ slides }) {
     return (
@@ -27,6 +28,9 @@ function MovieCarousel({ slides }) {
                 ))
                 }
             </Carousel >
+            {slides.map((item, index) => (
+                <MovieCard key={index} item={item} />
+            ))}
         </div >
     );
 }
