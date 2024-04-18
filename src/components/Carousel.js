@@ -22,11 +22,7 @@ const Carousel = () => {
         <div className="carousel__container">
           {nowPlaying.map((movie, index) => (
             <div className="carousel__slide " key={index}>
-<<<<<<< HEAD
-              <Movie movie={movie} />
-=======
               <MovieCard movie={movie} />
->>>>>>> actors-page
             </div>
           ))}
         </div>
@@ -36,11 +32,7 @@ const Carousel = () => {
         <div className="carousel__container">
           {topRated.map((movie, index) => (
             <div className="carousel__slide" key={index}>
-<<<<<<< HEAD
-              <Movie movie={movie} />
-=======
               <MovieCard movie={movie} />
->>>>>>> actors-page
             </div>
           ))}
         </div>
@@ -50,11 +42,7 @@ const Carousel = () => {
         <div className="carousel__container">
           {upComing.map((movie, index) => (
             <div className="carousel__slide" key={index}>
-<<<<<<< HEAD
-              <Movie movie={movie} />
-=======
               <MovieCard movie={movie} />
->>>>>>> actors-page
             </div>
           ))}
         </div>
@@ -64,11 +52,7 @@ const Carousel = () => {
         <div className="carousel__container">
           {popular.map((movie, index) => (
             <div className="carousel__slide" key={index}>
-<<<<<<< HEAD
-              <Movie movie={movie} />
-=======
               <MovieCard movie={movie} />
->>>>>>> actors-page
             </div>
           ))}
         </div>
