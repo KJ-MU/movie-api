@@ -1,12 +1,36 @@
 import React, { useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { search } from "../store";
+
 const NavBar = () => {
   const [isSearching, setIsSearching] = useState(false);
-  const [isShowing, setIsShowing] = useState(false);
   const [icon, setIcon] = useState(true);
+  const [searchValue, setSearchValue] = useState("");
+  const dispatch = useDispatch();
+
   const handleSearch = () => {
     setIsSearching(!isSearching);
     setIcon(!icon);
+  };
+
+  const handleChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleSearchBtn = () => {
+    if (searchValue === "") {
+      return;
+    }
+    dispatch(search(searchValue));
+    setSearchValue("");
+    console.log("TEST: handleSearchBtn");
+  };
+
+  const handleSendByEnter = (event) => {
+    if (event.keyCode === 13) {
+      handleSearchBtn();
+    }
   };
 
   return (
@@ -26,17 +50,23 @@ const NavBar = () => {
         {isSearching ? (
           <div className="flex self-center w-full gap-2">
             <input
-              type="text"
-              class="py-1 px-4 block w-full border-gray-200 rounded-full text-sm text-black focus:border-[#1C2026] focus:ring-[#1C2026] disabled:opacity-50 disabled:pointer-events-none placeholder:text-sm md:py-1"
+              type="search"
+              name="search-form"
+              id="search-form"
+              className="py-1 px-4 block w-full border-gray-200 rounded-full text-sm text-black focus:border-[#1C2026] focus:ring-[#1C2026] disabled:opacity-50 disabled:pointer-events-none placeholder:text-sm md:py-1"
               placeholder="Search Movies & series"
-            ></input>
+              value={searchValue}
+              onChange={handleChange}
+              onKeyDown={handleSendByEnter}
+            />
             <div className="self-center">
-              <MdOutlineSearch className="self-center mr-3 cursor-pointer size-7" />
+              <MdOutlineSearch
+                className="self-center mr-3 cursor-pointer size-7"
+                onClick={handleSearchBtn}
+              />
             </div>
           </div>
-        ) : (
-          console.log(null)
-        )}
+        ) : null}
 
         {!isSearching ? (
           <div className="self-center">
@@ -45,9 +75,7 @@ const NavBar = () => {
               onClick={handleSearch}
             />
           </div>
-        ) : (
-          console.log(null)
-        )}
+        ) : null}
       </div>
     </div>
   );
