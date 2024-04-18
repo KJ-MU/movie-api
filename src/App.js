@@ -1,23 +1,27 @@
 import "./App.css";
-import "./App.css";
 import "./slider.css";
-
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import {
+  getNowPlaying,
+  getUpComing,
+  getPopular,
+  getTopRated,
+  getGenre,
+} from "./store";
 import { useSelector, useDispatch } from "react-redux";
-import { getNowPlaying, getUpComing, getPopular, getTopRated } from "./store";
-import { getMovies } from "./store";
-
 import NavBar from "./components/NavBar";
-import MovieCarousel from "./components/MovieCarousel";
-import Carousel from "./components/Carousel";
-import MoviesList from "./components/MoviesList";
 import BottomBar from "./components/bottomBar";
+import MovieDetails from "./components/MovieDetails";
+import ActorDetails from "./components/ActorDetails";
+import DropdownMenu from "./components/DropdownMenu";
+import { HomePage } from "./pages/HomePage";
+import { MoviesPage } from "./pages/MoviesPage";
+import ActorsList from "./components/ActorsList";
 
 function App() {
-  // const movies = useSelector((state) => state.movies);
+  const movies = useSelector((state) => state.movies);
   const nowPlaying = useSelector((state) => state.nowPlaying);
-  console.log("🚀 ~ App ~ nowPlaying:", nowPlaying);
-  const popular = useSelector((state) => state.popular);
   const topRated = useSelector((state) => state.topRated);
   const upComing = useSelector((state) => state.upComing);
   const searchResults = useSelector((state) => state.searchResults);
@@ -26,6 +30,7 @@ function App() {
   useEffect(() => {
     dispatch(getNowPlaying());
     dispatch(getPopular());
+    dispatch(getGenre());
     dispatch(getUpComing());
     dispatch(getTopRated());
   }, [dispatch]);
@@ -33,9 +38,24 @@ function App() {
   return (
     <div>
       <NavBar />
-      {/* <MovieCarousel slides={popular} /> */}
-      {/* <Carousel /> */}
-      <MoviesList searchResults={searchResults} />
+      {/* <DropdownMenu
+        isOpen={isOpen}
+        selectedOption={selectedOption}
+        toggleDropdown={toggleDropdown}
+        handleOptionClick={handleOptionClick}
+      /> */}
+      {/* <DropdownMenu /> */}
+      <Routes>
+        {/* <Route path="/" element={<MovieCarousel slides={popular} />} /> */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/movie/:id" element={<MovieDetails />} />
+        <Route path="/actor/:id" element={<ActorDetails />} />
+        <Route path="/movies/:id" element={<MoviesPage />} />
+        <Route path="/actors" element={<ActorsList />} />
+
+        {/* <Carousel /> */}
+      </Routes>
+
       <BottomBar />
     </div>
   );
