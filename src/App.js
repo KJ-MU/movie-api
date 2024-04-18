@@ -9,16 +9,17 @@ import {
   getTopRated,
   getGenre,
 } from "./store";
-import MovieCarousel from "./components/MovieCarousel";
 import { useSelector, useDispatch } from "react-redux";
-import Carousel from "./components/Carousel";
 import NavBar from "./components/NavBar";
 import BottomBar from "./components/bottomBar";
 import MovieDetails from "./components/MovieDetails";
-import DropdownMenu from "./components/DropdownMenu";
 import ActorDetails from "./components/ActorDetails";
-import { HomePage } from "./components/HomePage";
-import { MoviesPage } from "./components/MoviesPage";
+import DropdownMenu from "./components/DropdownMenu";
+import { HomePage } from "./pages/HomePage";
+import { MoviesPage } from "./pages/MoviesPage";
+import ActorsList from "./components/ActorsList";
+
+
 function App() {
   const movies = useSelector((state) => state.movies);
   const nowPlaying = useSelector((state) => state.nowPlaying);
@@ -31,7 +32,7 @@ function App() {
     dispatch(getPopular());
     dispatch(getGenre());
     dispatch(getUpComing());
-    dispatch(getTopRated()); // Dispatch the action to fetch products
+    dispatch(getTopRated());
   }, [dispatch]);
 
   return (
@@ -50,6 +51,7 @@ function App() {
         <Route path="/movie/:id" element={<MovieDetails />} />
         <Route path="/actor/:id" element={<ActorDetails />} />
         <Route path="/movies/:id" element={<MoviesPage />} />
+        <Route path="/actors" element={<ActorsList />} />
 
         {/* <Carousel /> */}
       </Routes>

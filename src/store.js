@@ -15,9 +15,11 @@ const initialState = {
   castDetails: {},
   director: {},
   trailer: "",
+  bookmark: [],
   genre: [],
   moviesByGenre: [],
   AcotrMovies: [],
+  actors: [],
 };
 const BASE_URL = "https://api.themoviedb.org/3/";
 const API_KEY = "51b15414097474cf95e6f8917f62ca5e";
@@ -46,6 +48,15 @@ function moviesReducer(state = initialState, action) {
       return { ...state, director: action.payload };
     case "trailer/fetch":
       return { ...state, trailer: action.payload };
+    case "actors/fetch":
+      return { ...state, actors: action.payload };
+    case "bookmark/add":
+      return { ...state, bookmark: [...state.bookmark, action.payload] };
+    case "bookmark/remove":
+      return {
+        ...state,
+        bookmark: state.bookmark.filter((movie) => movie.id !== action.payload),
+      };
     case "genre/fetch":
       return { ...state, genre: action.payload };
     default:
@@ -56,6 +67,35 @@ function moviesReducer(state = initialState, action) {
 }
 const store = createStore(moviesReducer, applyMiddleware(thunk));
 
+export function getActors(id) {
+  return async (dispatch) => {
+    try {
+      const res = await fetch(`${BASE_URL}person/popular?api_key=${API_KEY}`);
+      const data = await res.json();
+      dispatch({ type: "actors/fetch", payload: data.results });
+    } catch (error) {
+      console.error("Error fetching actors:", error);
+    }
+  };
+}
+
+export function addBookmark(movie) {
+  return (dispatch, getState) => {
+    const { bookmark } = getState();
+    const isAlreadyBookmarked = bookmark.some(
+      (bookmarkMovie) => bookmarkMovie.id === movie.id
+    );
+
+    if (!isAlreadyBookmarked) {
+      dispatch({ type: "bookmark/add", payload: movie });
+    }
+  };
+}
+
+export function removeBookmark(movieId) {
+  return { type: "bookmark/remove", payload: movieId };
+}
+
 export function getTrailer(id) {
   return async (dispatch) => {
     try {
@@ -63,9 +103,7 @@ export function getTrailer(id) {
         `${BASE_URL}movie/${id}/videos?api_key=${API_KEY}`
       );
       const data = await res.json();
-
       const trailer = "https://www.youtube.com/embed/" + data.results[0].key;
-      console.log(trailer);
       dispatch({ type: "trailer/fetch", payload: trailer });
     } catch (error) {
       console.error("Error fetching director:", error);

@@ -1,14 +1,14 @@
 import { Carousel } from "flowbite-react";
 import MovieCard from "./MovieCard";
 import { Link } from "react-router-dom";
-function MovieCarousel({ slides }) {
+function MovieCarousel({ movies }) {
   return (
     <div
       id="movie-slider"
       className="flex flex-col justify-center items-center rounded-none  h-[80vh]  mb-10"
     >
       <Carousel className="rounded-none" indicators={false}>
-        {slides.map((item, index) => (
+        {movies.map((item, index) => (
           <div className="w-full rounded-none" key={index}>
             <div className="rounded-none">
               <div

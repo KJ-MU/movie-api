@@ -1,12 +1,12 @@
 import React from "react";
-import MovieCarousel from "./MovieCarousel";
+import MovieCarousel from "../components/MovieCarousel";
 import { useSelector } from "react-redux";
-import Carousel from "./Carousel";
+import Carousel from "../components/Carousel";
 export const HomePage = () => {
   const popular = useSelector((state) => state.popular);
   return (
     <div>
-      <MovieCarousel slides={popular} />
+      <MovieCarousel movies={popular} />
       <Carousel />
     </div>
   );
