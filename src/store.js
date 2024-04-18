@@ -10,7 +10,7 @@ const initialState = {
   popular: [],
   topRated: [],
   upComing: [],
-  searchResults: [],
+  searchResults: [], //!FOR SEARCH
   movieDetails: {},
   movieCast: [],
   castDetails: {},
@@ -61,16 +61,15 @@ const moviesReducer = (state = initialState, action) => {
     case "genre/fetch":
       return { ...state, genre: action.payload };
 
-    case "search/fetch":
+    case "search/fetch": //!FOR SEARCH
       return { ...state, searchResults: action.payload };
-
+    //!FOR SEARCH
     default:
       break;
   }
 
   return state;
 };
-const store = createStore(moviesReducer, applyMiddleware(thunk));
 
 export function getActors(id) {
   return async (dispatch) => {
@@ -218,6 +217,8 @@ export const getUpComing = () => {
   };
 };
 
+//!FOR SEARCH
+
 export const search = (query) => {
   return async (dispatch) => {
     try {
@@ -232,7 +233,7 @@ export const search = (query) => {
   };
 };
 
-const store = createStore(moviesReducer, applyMiddleware(thunk));
+//!FOR SEARCH
 
 export function getGenre() {
   return async (dispatch) => {
@@ -271,4 +272,6 @@ export function getActorMovies(id) {
     }
   };
 }
+const store = createStore(moviesReducer, applyMiddleware(thunk));
+
 export default store;

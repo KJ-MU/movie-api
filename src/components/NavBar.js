@@ -10,7 +10,7 @@ const NavBar = () => {
   const [icon, setIcon] = useState(true);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState(""); //!FOR SEARCH
   const dispatch = useDispatch();
 
   const handleSearch = () => {
@@ -24,6 +24,8 @@ const NavBar = () => {
   const handleChange = (e) => {
     setSearchValue(e.target.value);
   };
+
+  //!FOR SEARCH
 
   const handleSearchBtn = () => {
     if (searchValue === "") {
@@ -39,6 +41,8 @@ const NavBar = () => {
       handleSearchBtn();
     }
   };
+
+  //!FOR SEARCH
 
   const handleOptionClick = () => {
     setIsOpen(false);
@@ -75,14 +79,14 @@ const NavBar = () => {
               id="search-form"
               className="py-1 px-4 block w-full border-gray-200 rounded-full text-sm text-black focus:border-[#1C2026] focus:ring-[#1C2026] disabled:opacity-50 disabled:pointer-events-none placeholder:text-sm md:py-1"
               placeholder="Search Movies & series"
-              value={searchValue}
-              onChange={handleChange}
-              onKeyDown={handleSendByEnter}
+              value={searchValue} //!FOR SEARCH
+              onChange={handleChange} //!FOR SEARCH
+              onKeyDown={handleSendByEnter} //!FOR SEARCH
             />
             <div className="self-center">
               <MdOutlineSearch
                 className="self-center mr-3 cursor-pointer size-7"
-                onClick={handleSearchBtn}
+                onClick={handleSearchBtn} //!FOR SEARCH
               />
             </div>
           </div>
