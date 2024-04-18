@@ -10,7 +10,6 @@ function DropdownMenu({
   handleOptionClick,
 }) {
   const options = useSelector((state) => state.genre);
-  console.log("🚀 ~ options:", options);
 
   const dispatch = useDispatch();
   useEffect(() => {

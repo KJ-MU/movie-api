@@ -4,6 +4,7 @@ import { thunk } from "redux-thunk"; // Import thunk correctly
 // Popular https://api.themoviedb.org/3/movie/popular\
 // Top Rated https://api.themoviedb.org/3/movie/top_rated
 // Upcoming https://api.themoviedb.org/3/movie/upcoming
+//`https://api.themoviedb.org/3/person/${actorId}/movie_credits?api_key=YOUR_API_KEY`
 const initialState = {
   nowPlaying: [],
   popular: [],
@@ -16,12 +17,15 @@ const initialState = {
   trailer: "",
   genre: [],
   moviesByGenre: [],
+  AcotrMovies: [],
 };
 const BASE_URL = "https://api.themoviedb.org/3/";
 const API_KEY = "51b15414097474cf95e6f8917f62ca5e";
 
 function moviesReducer(state = initialState, action) {
   switch (action.type) {
+    case "AcotrMovies/fetch":
+      return { ...state, AcotrMovies: action.payload };
     case "moviesByGenre/fetch":
       return { ...state, moviesByGenre: action.payload };
     case "nowPlaying/fetch":
@@ -188,6 +192,19 @@ export function getMoviesByGenre(id) {
       dispatch({ type: "moviesByGenre/fetch", payload: data.results });
     } catch (error) {
       console.error("Error fetching moviesByGenre:", error);
+    }
+  };
+}
+export function getActorMovies(id) {
+  return async (dispatch) => {
+    try {
+      const res = await fetch(
+        `${BASE_URL}person/${id}/movie_credits?api_key=${API_KEY}`
+      );
+      const data = await res.json();
+      dispatch({ type: "AcotrMovies/fetch", payload: data.cast });
+    } catch (error) {
+      console.error("Error fetching AcotrMovies:", error);
     }
   };
 }
