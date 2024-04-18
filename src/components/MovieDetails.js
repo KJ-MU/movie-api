@@ -4,7 +4,6 @@ import { FaStar } from "react-icons/fa6";
 import ActorCard from './ActorCard';
 import { getMovieDetails, getMovieCast, getDirector, getTrailer, addBookmark, removeBookmark } from '../store';
 import { useParams } from 'react-router-dom';
-import { LuGalleryHorizontal } from 'react-icons/lu';
 
 const MovieDetails = () => {
     const [isShown, setIsShown] = useState(false)

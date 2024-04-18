@@ -17,6 +17,7 @@ import ActorDetails from "./components/ActorDetails";
 import DropdownMenu from "./components/DropdownMenu";
 import { HomePage } from "./pages/HomePage";
 import { MoviesPage } from "./pages/MoviesPage";
+import ActorsList from "./components/ActorsList";
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
         <Route path="/movie/:id" element={<MovieDetails />} />
         <Route path="/actor/:id" element={<ActorDetails />} />
         <Route path="/movies/:id" element={<MoviesPage />} />
+        <Route path="/actors" element={<ActorsList />} />
 
         {/* <Carousel /> */}
       </Routes>

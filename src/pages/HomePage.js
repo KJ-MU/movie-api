@@ -6,7 +6,7 @@ export const HomePage = () => {
   const popular = useSelector((state) => state.popular);
   return (
     <div>
-      <MovieCarousel slides={popular} />
+      <MovieCarousel movies={popular} />
       <Carousel />
     </div>
   );
