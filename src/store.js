@@ -14,12 +14,16 @@ const initialState = {
   castDetails: {},
   director: {},
   trailer: "",
+  genre: [],
+  moviesByGenre: [],
 };
 const BASE_URL = "https://api.themoviedb.org/3/";
 const API_KEY = "51b15414097474cf95e6f8917f62ca5e";
 
 function moviesReducer(state = initialState, action) {
   switch (action.type) {
+    case "moviesByGenre/fetch":
+      return { ...state, moviesByGenre: action.payload };
     case "nowPlaying/fetch":
       return { ...state, nowPlaying: action.payload };
     case "popular/fetch":
@@ -38,6 +42,8 @@ function moviesReducer(state = initialState, action) {
       return { ...state, director: action.payload };
     case "trailer/fetch":
       return { ...state, trailer: action.payload };
+    case "genre/fetch":
+      return { ...state, genre: action.payload };
     default:
       break;
   }
@@ -49,9 +55,11 @@ const store = createStore(moviesReducer, applyMiddleware(thunk));
 export function getTrailer(id) {
   return async (dispatch) => {
     try {
-      const res = await fetch(`${BASE_URL}movie/${id}/videos?api_key=${API_KEY}`);
+      const res = await fetch(
+        `${BASE_URL}movie/${id}/videos?api_key=${API_KEY}`
+      );
       const data = await res.json();
-      console.log("🚀 ~ return ~ data:", data)
+
       const trailer = "https://www.youtube.com/embed/" + data.results[0].key;
       console.log(trailer);
       dispatch({ type: "trailer/fetch", payload: trailer });
@@ -64,9 +72,11 @@ export function getTrailer(id) {
 export function getDirector(id) {
   return async (dispatch) => {
     try {
-      const res = await fetch(`${BASE_URL}movie/${id}/credits?api_key=${API_KEY}`);
+      const res = await fetch(
+        `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}`
+      );
       const data = await res.json();
-      const director = data.crew.filter(({ job }) => job === 'Director');
+      const director = data.crew.filter(({ job }) => job === "Director");
       dispatch({ type: "director/fetch", payload: director });
     } catch (error) {
       console.error("Error fetching director:", error);
@@ -77,8 +87,7 @@ export function getDirector(id) {
 export function getCastDetails(id) {
   return async (dispatch) => {
     try {
-      const res = await fetch(
-        `${BASE_URL}person/${id}?api_key=${API_KEY}`);
+      const res = await fetch(`${BASE_URL}person/${id}?api_key=${API_KEY}`);
       const data = await res.json();
       dispatch({ type: "castDetails/fetch", payload: data });
     } catch (error) {
@@ -91,7 +100,8 @@ export function getMovieCast(id) {
   return async (dispatch) => {
     try {
       const res = await fetch(
-        `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}`);
+        `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}`
+      );
       const data = await res.json();
       dispatch({ type: "cast/fetch", payload: data.cast });
     } catch (error) {
@@ -102,8 +112,7 @@ export function getMovieCast(id) {
 export function getMovieDetails(id) {
   return async (dispatch) => {
     try {
-      const res = await fetch(
-        `${BASE_URL}movie/${id}?api_key=${API_KEY}`);
+      const res = await fetch(`${BASE_URL}movie/${id}?api_key=${API_KEY}`);
       const data = await res.json();
       dispatch({ type: "details/fetch", payload: data });
     } catch (error) {
@@ -128,9 +137,7 @@ export function getNowPlaying() {
 export function getPopular() {
   return async (dispatch) => {
     try {
-      const res = await fetch(
-        `${BASE_URL}movie/popular?api_key=${API_KEY}`
-      );
+      const res = await fetch(`${BASE_URL}movie/popular?api_key=${API_KEY}`);
       const data = await res.json();
       dispatch({ type: "popular/fetch", payload: data.results });
     } catch (error) {
@@ -141,9 +148,7 @@ export function getPopular() {
 export function getTopRated() {
   return async (dispatch) => {
     try {
-      const res = await fetch(
-        `${BASE_URL}movie/top_rated?api_key=${API_KEY}`
-      );
+      const res = await fetch(`${BASE_URL}movie/top_rated?api_key=${API_KEY}`);
       const data = await res.json();
       dispatch({ type: "topRated/fetch", payload: data.results });
     } catch (error) {
@@ -154,13 +159,35 @@ export function getTopRated() {
 export function getUpComing() {
   return async (dispatch) => {
     try {
-      const res = await fetch(
-        `${BASE_URL}movie/upcoming?api_key=${API_KEY}`
-      );
+      const res = await fetch(`${BASE_URL}movie/upcoming?api_key=${API_KEY}`);
       const data = await res.json();
       dispatch({ type: "upComing/fetch", payload: data.results });
     } catch (error) {
       console.error("Error fetching upComing:", error);
+    }
+  };
+}
+export function getGenre() {
+  return async (dispatch) => {
+    try {
+      const res = await fetch(`${BASE_URL}genre/movie/list?api_key=${API_KEY}`);
+      const data = await res.json();
+      dispatch({ type: "genre/fetch", payload: data.genres });
+    } catch (error) {
+      console.error("Error fetching genre:", error);
+    }
+  };
+}
+export function getMoviesByGenre(id) {
+  return async (dispatch) => {
+    try {
+      const res = await fetch(
+        `${BASE_URL}discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&with_genres=${id}`
+      );
+      const data = await res.json();
+      dispatch({ type: "moviesByGenre/fetch", payload: data.results });
+    } catch (error) {
+      console.error("Error fetching moviesByGenre:", error);
     }
   };
 }
