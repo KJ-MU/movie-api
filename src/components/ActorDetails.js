@@ -7,9 +7,7 @@ import MovieCard from "./MovieCard";
 const ActorDetails = () => {
   const { id } = useParams();
   const castDetails = useSelector((state) => state.castDetails);
-  console.log("🚀 ~ ActorDetails ~ castDetails:", castDetails);
   const actorMovies = useSelector((state) => state.AcotrMovies);
-  console.log("🚀 ~ ActorDetails ~ actorMovies:", actorMovies);
   const dispatch = useDispatch();
 
   useEffect(() => {
