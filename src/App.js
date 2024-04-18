@@ -19,7 +19,6 @@ import { HomePage } from "./pages/HomePage";
 import { MoviesPage } from "./pages/MoviesPage";
 import ActorsList from "./components/ActorsList";
 
-
 function App() {
   const movies = useSelector((state) => state.movies);
   const nowPlaying = useSelector((state) => state.nowPlaying);
