@@ -18,7 +18,7 @@ import DropdownMenu from "./components/DropdownMenu";
 import { HomePage } from "./pages/HomePage";
 import { MoviesPage } from "./pages/MoviesPage";
 import ActorsList from "./components/ActorsList";
-
+import Bookmark from "./components/Bookmark";
 function App() {
   const movies = useSelector((state) => state.movies);
   const nowPlaying = useSelector((state) => state.nowPlaying);
@@ -51,7 +51,7 @@ function App() {
         <Route path="/actor/:id" element={<ActorDetails />} />
         <Route path="/movies/:id" element={<MoviesPage />} />
         <Route path="/actors" element={<ActorsList />} />
-
+        <Route path="/bookmarked" element={<Bookmark />} />
         {/* <Carousel /> */}
       </Routes>
 

@@ -1,9 +1,9 @@
 import React, { useMemo } from "react";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { FaStar } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { addBookmark, removeBookmark } from '../store';
+import { addBookmark, removeBookmark } from "../store";
 
 const MovieURL = "/movie/id:";
 
@@ -15,14 +15,15 @@ const MovieCard = ({ movie }) => {
     return bookmark.some((bookmarkedMovie) => bookmarkedMovie.id === movie.id);
   }, [bookmark, movie.id]);
 
-
   const handleBookmark = () => {
-    if (isBookmarked) {
-      dispatch(removeBookmark(movie.id));
-    } else {
-      dispatch(addBookmark(movie));
+    if (movie) {
+      if (isBookmarked) {
+        dispatch(removeBookmark(movie.id));
+      } else {
+        dispatch(addBookmark(movie));
+      }
     }
-    console.log("🚀 ~ movie ~ bookmark:", bookmark)
+    console.log("🚀 ~ movie ~ bookmark:", bookmark);
   };
 
   return (
@@ -48,14 +49,15 @@ const MovieCard = ({ movie }) => {
             <p className="text-xs">{movie.release_date.slice(0, 4)}</p>
           </div>
           <button onClick={handleBookmark}>
-            {isBookmarked ? <FaBookmark size={20} />
-              : <FaRegBookmark size={20} />
-            }
+            {isBookmarked ? (
+              <FaBookmark size={20} />
+            ) : (
+              <FaRegBookmark size={20} />
+            )}
           </button>
-
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 

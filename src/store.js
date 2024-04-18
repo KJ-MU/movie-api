@@ -78,7 +78,11 @@ export function getActors(id) {
     }
   };
 }
-
+// setTodoList((oldTodoList) => {
+//   const newArray = [...oldTodoList, newTodoObj];
+//   localStorage.setItem("todoList", JSON.stringify(newArray));
+//   return newArray;
+// });
 export function addBookmark(movie) {
   return (dispatch, getState) => {
     const { bookmark } = getState();

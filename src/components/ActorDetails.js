@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { getCastDetails } from "../store";
 import { getActorMovies } from "../store";
 import MovieCard from "./MovieCard";
+import { FaStar } from "react-icons/fa6";
+
 const ActorDetails = () => {
   const { id } = useParams();
   const castDetails = useSelector((state) => state.castDetails);
@@ -31,13 +33,21 @@ const ActorDetails = () => {
                     className="rounded-xl"
                   />
                 </div>
-                <div className="flex flex-col justify-center items-start gap-2 text-white text-start">
+                <div className="lg:w-3/5  flex flex-col justify-center items-start gap-2 text-white text-start">
                   <h1 className="p-1 text-5xl">{castDetails.name}</h1>
-                  <p className="p-1">{castDetails.overview}</p>
-                  <p className="p-1">Birthday: {castDetails.birthday}</p>
-                  <p className="p-1 text-start">
-                    Origin {castDetails.place_of_birth}
+
+                  <p className="p-1">
+                    Gender: {castDetails.gender == 1 ? "Female" : "Male"}
                   </p>
+                  <div className="p-1 flex justify-start items-center gap-2">
+                    <span>
+                      Popularity:{" "}
+                      {parseFloat(castDetails.popularity).toFixed(1)}
+                    </span>
+                    <FaStar color="#FFE234" />
+                  </div>
+                  <p className="p-1">{castDetails.biography}</p>
+
                   <div className="flex gap-1">
                     {castDetails.genres &&
                       castDetails.genres.map((genre) => {
@@ -64,7 +74,7 @@ const ActorDetails = () => {
         <div className="flex flex-wrap gap-10 justify-center items-center my-10">
           {actorMovies?.map((item, index) => (
             <div>
-              <MovieCard index={index} item={item} />
+              <MovieCard key={index} movie={item} />
             </div>
           ))}
         </div>

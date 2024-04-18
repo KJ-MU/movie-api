@@ -8,7 +8,6 @@ export const MoviesPage = () => {
   const { id } = useParams();
   const moviesByGenre = useSelector((state) => state.moviesByGenre);
   const genre = useSelector((state) => state.genre);
-  console.log("🚀 ~ MoviesPage ~ genre:", genre);
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import DropdownMenu from "./DropdownMenu";
 import { Link } from "react-router-dom";
+import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 const NavBar = () => {
   const [isSearching, setIsSearching] = useState(false);
   const [isShowing, setIsShowing] = useState(false);
@@ -36,7 +37,9 @@ const NavBar = () => {
             toggleDropdown={toggleDropdown}
             handleOptionClick={handleOptionClick}
           />
-          <Link to={"/actors"}><li className="hover:underline">Actors</li></Link>
+          <Link to={"/actors"}>
+            <li className="hover:underline">Actors</li>
+          </Link>
           <li className="hover:underline">About</li>
         </ul>
       </nav>
@@ -57,11 +60,14 @@ const NavBar = () => {
         )}
 
         {!isSearching ? (
-          <div className="self-center">
+          <div className="self-center flex gap-5">
             <MdOutlineSearch
               className="self-center size-7 mr-3 cursor-pointer"
               onClick={handleSearch}
             />
+            <Link path="/bookmarked">
+              <FaRegBookmark className="self-center mr-3 cursor-pointer size-6" />
+            </Link>
           </div>
         ) : (
           console.log(null)
