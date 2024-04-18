@@ -15,8 +15,8 @@ import BottomBar from "./components/bottomBar";
 import MovieDetails from "./components/MovieDetails";
 import ActorDetails from "./components/ActorDetails";
 import DropdownMenu from "./components/DropdownMenu";
-import { HomePage } from "./components/HomePage";
-import { MoviesPage } from "./components/MoviesPage";
+import { HomePage } from "./pages/HomePage";
+import { MoviesPage } from "./pages/MoviesPage";
 
 
 function App() {

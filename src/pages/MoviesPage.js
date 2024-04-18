@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getMoviesByGenre } from "../store";
-import MovieCard from "./MovieCard";
+import MovieCard from "../components/MovieCard";
 export const MoviesPage = () => {
   const { id } = useParams();
   const moviesByGenre = useSelector((state) => state.moviesByGenre);
