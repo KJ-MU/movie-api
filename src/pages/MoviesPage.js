@@ -28,9 +28,9 @@ export const MoviesPage = () => {
         )}
       </div> */}
       <div className="mt-20 flex flex-wrap justify-center items-center gap-10 ">
-        {moviesByGenre.map((item, index) => (
+        {moviesByGenre.map((movie, index) => (
           <div key={index}>
-            <MovieCard item={item} />
+            <MovieCard movie={movie} />
           </div>
         ))}
       </div>

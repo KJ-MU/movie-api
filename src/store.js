@@ -17,6 +17,7 @@ const initialState = {
   bookmark: [],
   genre: [],
   moviesByGenre: [],
+  actors: [],
 };
 const BASE_URL = "https://api.themoviedb.org/3/";
 const API_KEY = "51b15414097474cf95e6f8917f62ca5e";
@@ -43,6 +44,8 @@ function moviesReducer(state = initialState, action) {
       return { ...state, director: action.payload };
     case "trailer/fetch":
       return { ...state, trailer: action.payload };
+    case "actors/fetch":
+      return { ...state, actors: action.payload };
     case "bookmark/add":
       return { ...state, bookmark: [...state.bookmark, action.payload] };
     case "bookmark/remove":
@@ -59,6 +62,20 @@ function moviesReducer(state = initialState, action) {
   return state;
 }
 const store = createStore(moviesReducer, applyMiddleware(thunk));
+
+export function getActors(id) {
+  return async (dispatch) => {
+    try {
+      const res = await fetch(
+        `${BASE_URL}person/popular?api_key=${API_KEY}`
+      );
+      const data = await res.json();
+      dispatch({ type: "actors/fetch", payload: data.results });
+    } catch (error) {
+      console.error("Error fetching actors:", error);
+    }
+  };
+}
 
 export function addBookmark(movie) {
   return (dispatch, getState) => {
@@ -82,10 +99,6 @@ export function getTrailer(id) {
         `${BASE_URL}movie/${id}/videos?api_key=${API_KEY}`
       );
       const data = await res.json();
-<<<<<<< HEAD
-=======
-
->>>>>>> d46b4c4c6c9a696979b518b3371ddb770cd236d4
       const trailer = "https://www.youtube.com/embed/" + data.results[0].key;
       dispatch({ type: "trailer/fetch", payload: trailer });
     } catch (error) {

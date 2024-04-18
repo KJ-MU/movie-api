@@ -36,7 +36,7 @@ const NavBar = () => {
             toggleDropdown={toggleDropdown}
             handleOptionClick={handleOptionClick}
           />
-          <li className="hover:underline">Actors</li>
+          <Link to={"/actors"}><li className="hover:underline">Actors</li></Link>
           <li className="hover:underline">About</li>
         </ul>
       </nav>
