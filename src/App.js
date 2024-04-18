@@ -5,13 +5,11 @@ import { Routes, Route } from "react-router-dom";
 import { getNowPlaying, getUpComing, getPopular, getTopRated } from "./store";
 import MovieCarousel from "./components/MovieCarousel";
 import { useSelector, useDispatch } from "react-redux";
-import Carousel from "./components/Carousel";
 import NavBar from "./components/NavBar";
 import BottomBar from "./components/bottomBar";
 import MovieDetails from "./components/MovieDetails";
-import Navbar from "flowbite-react";
-import MovieCard from "./components/MovieCard";
 import ActorDetails from "./components/ActorDetails";
+import { MoviesList } from "./components/MoviesList";
 
 function App() {
   const movies = useSelector((state) => state.movies);
@@ -25,22 +23,18 @@ function App() {
     dispatch(getNowPlaying());
     dispatch(getPopular());
     dispatch(getUpComing());
-    dispatch(getTopRated()); // Dispatch the action to fetch products
+    dispatch(getTopRated());
   }, [dispatch]);
 
   return (
     <div>
       <NavBar />
       <Routes>
-        <Route path="/" element={<MovieCarousel slides={popular} />} />
+        <Route path="/" element={<MovieCarousel movies={popular} />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
         <Route path="/actor/:id" element={<ActorDetails />} />
-
-        {/* Other routes... */}
+        <Route path="/movies" element={<MoviesList />} />
       </Routes>
-      <MovieCarousel slides={popular} />
-      {/* <MoviesList /> */}
-      <Carousel />
       <BottomBar />
     </div>
   );

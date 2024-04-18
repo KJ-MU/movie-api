@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const ActorCard = ({ actor }) => {
     return (
-
         (actor.profile_path &&
             <div className="rounded-xl w-48 object-contain h-fit shadow-sm bg-[#31363fe9] flex-col text-white">
                 <Link to={`/actor/${actor.credit_id}`}>
@@ -20,7 +19,6 @@ const ActorCard = ({ actor }) => {
                     </p>
                 </div>
             </div>)
-
     );
 }
 
