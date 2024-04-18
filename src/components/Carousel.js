@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import Movie from "./MovieCard";
 import "../App.css";
-import { useState } from "react";
+
 const Carousel = () => {
   const [nowPlayingViewportRef, nowPlayingEmbla] = useEmblaCarousel();
   const [topRatedViewportRef, topRatedEmbla] = useEmblaCarousel();
@@ -17,7 +17,7 @@ const Carousel = () => {
   const upComing = useSelector((state) => state.upComing);
 
   return (
-    <div className="mt-20 flex flex-col justify-start items-start gap-10 overflow-hidden">
+    <div className="mt-20 flex flex-col justify-start items-start  gap-10 overflow-hidden">
       <p className=" font-bold text-2xl  px-5">Now Playing</p>
       <div className="carousel" ref={nowPlayingViewportRef}>
         <div className="carousel__container">
