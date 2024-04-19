@@ -20,6 +20,7 @@ import { MoviesPage } from "./pages/MoviesPage";
 import ActorsList from "./components/ActorsList";
 import MoviesList from "./components/MoviesList";
 import About from "./components/About";
+import Bookmark from "./components/Bookmark"
 
 
 function App() {
@@ -46,9 +47,11 @@ function App() {
         <Route path="/movies/:id" element={<MoviesPage />} />
         <Route path="/actors" element={<ActorsList />} />
         <Route path="/about" element={<About />} />
+        <Route path="/bookmarked" element={<Bookmark />} />
+        <Route path="/search" element={<MoviesList searchResults={searchResults} />} /> {/*//!FOR SEARCH */}
       </Routes>
-      <MoviesList searchResults={searchResults} /> {/*//!FOR SEARCH */}
       <BottomBar />
+
     </div>
   );
 }

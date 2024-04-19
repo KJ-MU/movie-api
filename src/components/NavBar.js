@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import DropdownMenu from "./DropdownMenu";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { search } from "../store";
+import { useNavigate } from "react-router-dom";
+import { FaRegBookmark } from "react-icons/fa";
+
 
 const NavBar = () => {
   const [isSearching, setIsSearching] = useState(false);
@@ -11,6 +14,8 @@ const NavBar = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [searchValue, setSearchValue] = useState(""); //!FOR SEARCH
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSearch = () => {
@@ -33,7 +38,8 @@ const NavBar = () => {
     }
     dispatch(search(searchValue));
     setSearchValue("");
-    console.log("TEST: handleSearchBtn");
+    handleSearch();
+    navigate("/search")
   };
 
   const handleSendByEnter = (event) => {
@@ -49,8 +55,9 @@ const NavBar = () => {
   };
   return (
     <div className="bg-[#1C2026] sticky border-b-2 top-0 z-10  w-full h-16 flex justify-between lg:justify-around">
+
       <div className="flex justify-center self-center text-xl text-white ml-3">
-        EML
+        <Link to={"/"}>EML </Link>
       </div>
       <nav className="hidden w-1/2 lg:flex justify-center self-center">
         <ul className="flex w-full justify-center gap-20 list-none  text-white">
@@ -67,10 +74,13 @@ const NavBar = () => {
           <Link to={"/actors"}>
             <li className="hover:underline">Actors</li>
           </Link>
-          <li className="hover:underline">About</li>
+          <Link to={"/about"}>
+            <li className="hover:underline">About</li>
+          </Link>
         </ul>
       </nav>
       <div className="text-white flex justify-end self-center gap-3 md: w-1/2 lg:w-1/4">
+
         {isSearching ? (
           <div className="flex self-center w-full gap-2">
             <input
@@ -100,6 +110,9 @@ const NavBar = () => {
             />
           </div>
         ) : null}
+        <Link to={"./bookmarked"} className="self-center">
+          <FaRegBookmark size={20} />
+        </Link>
       </div>
     </div>
   );
