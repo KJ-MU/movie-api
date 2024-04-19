@@ -23,6 +23,7 @@ import About from "./components/About";
 
 
 function App() {
+
   const searchResults = useSelector((state) => state.searchResults); //!FOR SEARCH
   const dispatch = useDispatch();
 
