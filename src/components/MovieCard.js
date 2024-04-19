@@ -15,7 +15,6 @@ const MovieCard = ({ movie }) => {
     return bookmark.some((bookmarkedMovie) => bookmarkedMovie.id === movie.id);
   }, [bookmark, movie.id]);
 
-
   const handleBookmark = () => {
     if (isBookmarked) {
       dispatch(removeBookmark(movie.id));
