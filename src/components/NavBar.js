@@ -108,7 +108,7 @@ const NavBar = () => {
           </div>
         ) : null}
         <Link to={"./bookmarked"} className="self-center">
-          <FaRegBookmark size={20} />
+          <FaRegBookmark className="hidden lg:block" size={20} />
         </Link>
       </div>
     </div>

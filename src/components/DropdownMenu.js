@@ -63,10 +63,10 @@ function DropdownMenu({
   }, [dispatch]);
 
   return (
-    <div className="ml-2 relative">
+    <div className="ml-2 relative flex flex-col items-center justify-center">
       <button onClick={toggleDropdown}>
         {selectedOption ? selectedOption.label : "Genre"}
-        <label className="hidden lg:block"> </label>
+        {/* <label className="hidden lg:block"> </label> */}
       </button>
 
       {isOpen && (

@@ -62,3 +62,6 @@
   transform: scale(1.02); /* Enlarge slide on hover for better visibility */
   overflow: hidden;
 }
+html {
+  padding-bottom: 80px;
+}
