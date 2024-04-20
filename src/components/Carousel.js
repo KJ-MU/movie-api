@@ -5,10 +5,18 @@ import MovieCard from "./MovieCard";
 import "../App.css";
 import { useState } from "react";
 const Carousel = () => {
-  const [nowPlayingViewportRef, nowPlayingEmbla] = useEmblaCarousel();
-  const [topRatedViewportRef, topRatedEmbla] = useEmblaCarousel();
-  const [upComingViewportRef, upComingEmbla] = useEmblaCarousel();
-  const [popularViewportRef, popularEmbla] = useEmblaCarousel();
+  const [nowPlayingViewportRef, nowPlayingEmbla] = useEmblaCarousel({
+    dragFree: true,
+  });
+  const [topRatedViewportRef, topRatedEmbla] = useEmblaCarousel({
+    dragFree: true,
+  });
+  const [upComingViewportRef, upComingEmbla] = useEmblaCarousel({
+    dragFree: true,
+  });
+  const [popularViewportRef, popularEmbla] = useEmblaCarousel({
+    dragFree: true,
+  });
 
   const nowPlaying = useSelector((state) => state.nowPlaying);
   const popular = useSelector((state) => state.popular);
