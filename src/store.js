@@ -10,6 +10,7 @@ const initialState = {
   popular: [],
   topRated: [],
   upComing: [],
+  searchResults: [], //!FOR SEARCH
   movieDetails: {},
   movieCast: [],
   castDetails: {},
@@ -24,7 +25,7 @@ const initialState = {
 const BASE_URL = "https://api.themoviedb.org/3/";
 const API_KEY = "51b15414097474cf95e6f8917f62ca5e";
 
-function moviesReducer(state = initialState, action) {
+const moviesReducer = (state = initialState, action) => {
   switch (action.type) {
     case "AcotrMovies/fetch":
       return { ...state, AcotrMovies: action.payload };
@@ -59,13 +60,16 @@ function moviesReducer(state = initialState, action) {
       };
     case "genre/fetch":
       return { ...state, genre: action.payload };
+
+    case "search/fetch": //!FOR SEARCH
+      return { ...state, searchResults: action.payload };
+    //!FOR SEARCH
     default:
       break;
   }
 
   return state;
-}
-const store = createStore(moviesReducer, applyMiddleware(thunk));
+};
 
 export function getActors(id) {
   return async (dispatch) => {
@@ -167,7 +171,7 @@ export function getMovieDetails(id) {
   };
 }
 
-export function getNowPlaying() {
+export const getNowPlaying = () => {
   return async (dispatch) => {
     try {
       const res = await fetch(
@@ -179,8 +183,9 @@ export function getNowPlaying() {
       console.error("Error fetching nowPlaying:", error);
     }
   };
-}
-export function getPopular() {
+};
+
+export const getPopular = () => {
   return async (dispatch) => {
     try {
       const res = await fetch(`${BASE_URL}movie/popular?api_key=${API_KEY}`);
@@ -190,8 +195,9 @@ export function getPopular() {
       console.error("Error fetching popular:", error);
     }
   };
-}
-export function getTopRated() {
+};
+
+export const getTopRated = () => {
   return async (dispatch) => {
     try {
       const res = await fetch(`${BASE_URL}movie/top_rated?api_key=${API_KEY}`);
@@ -201,8 +207,9 @@ export function getTopRated() {
       console.error("Error fetching topRated:", error);
     }
   };
-}
-export function getUpComing() {
+};
+
+export const getUpComing = () => {
   return async (dispatch) => {
     try {
       const res = await fetch(`${BASE_URL}movie/upcoming?api_key=${API_KEY}`);
@@ -212,7 +219,26 @@ export function getUpComing() {
       console.error("Error fetching upComing:", error);
     }
   };
-}
+};
+
+//!FOR SEARCH
+
+export const search = (query) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetch(
+        `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=51b15414097474cf95e6f8917f62ca5e`
+      );
+      const data = await res.json();
+      dispatch({ type: "search/fetch", payload: data.results });
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
+  };
+};
+
+//!FOR SEARCH
+
 export function getGenre() {
   return async (dispatch) => {
     try {
@@ -250,4 +276,6 @@ export function getActorMovies(id) {
     }
   };
 }
+const store = createStore(moviesReducer, applyMiddleware(thunk));
+
 export default store;

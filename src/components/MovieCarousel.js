@@ -9,7 +9,7 @@ function MovieCarousel({ movies }) {
     >
       <Carousel className="rounded-none" indicators={false}>
         {movies.map((item, index) => (
-          <div className="w-full rounded-none" key={index}>
+          <div className="w-full rounded-none py-20 " key={index}>
             <div className="rounded-none">
               <div
                 style={{
