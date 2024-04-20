@@ -33,7 +33,7 @@ const ActorDetails = () => {
                 </div>
                 <div className="flex flex-col justify-center items-start gap-2 text-white text-start">
                   <h1 className="p-1 text-5xl">{castDetails.name}</h1>
-                  <p className="p-1">{castDetails.overview}</p>
+                  <p className="p-1">{castDetails.biography}</p>
                   <p className="p-1">Birthday: {castDetails.birthday}</p>
                   <p className="p-1 text-start">
                     Origin {castDetails.place_of_birth}
@@ -64,7 +64,7 @@ const ActorDetails = () => {
         <div className="flex flex-wrap gap-10 justify-center items-center my-10">
           {actorMovies?.map((item, index) => (
             <div>
-              <MovieCard index={index} item={item} />
+              <MovieCard index={index} movie={item} />
             </div>
           ))}
         </div>

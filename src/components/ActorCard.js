@@ -5,7 +5,7 @@ const ActorCard = ({ actor }) => {
     return (
         (actor.profile_path &&
             <div className="rounded-xl w-48 object-contain h-fit shadow-sm bg-[#31363fe9] flex-col text-white">
-                <Link to={`/actor/${actor.credit_id ? actor.credit_id : actor.id}`}>
+                <Link to={`/actor/${actor.id}`}>
                     <img
                         src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
                         className=" rounded-t-xl justify-center "
