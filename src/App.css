@@ -44,7 +44,7 @@
 .carousel__container {
   display: flex;
   align-items: center;
-  transition: transform 0.09s ease; /* Smooth transition for slide movement */
+  transform: translateX(100%);
   height: 450px; /* You may adjust the height as needed */
   overflow-x: scroll; /* Enable horizontal scrolling */
   scrollbar-width: none; /* Hide scrollbar for better appearance */
@@ -59,7 +59,7 @@
   flex: 0 0 auto;
   margin-right: 10px;
   min-width: 200px; /* Adjust the minimum width of each slide */
-  transition: transform 0.09s ease; /* Smooth transition for slide movement */
+  transition: translateX(-100%); /* Smooth transition for slide movement */
 }
 
 html {
