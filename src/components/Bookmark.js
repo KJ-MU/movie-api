@@ -5,7 +5,7 @@ import MovieCard from "./MovieCard";
 const Bookmark = () => {
   const bookmarkedMovies = useSelector((state) => state.bookmark);
   return (
-    <div>
+    <div className="flex flex-wrap gap-10 justify-start items-center p-10">
       {bookmarkedMovies.map((movie, index) => (
         <MovieCard key={index} movie={movie} />
       ))}

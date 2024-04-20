@@ -40,6 +40,7 @@ const NavBar = () => {
           <Link to={"/actors"}>
             <li className="hover:underline">Actors</li>
           </Link>
+
           <li className="hover:underline">About</li>
         </ul>
       </nav>
@@ -58,20 +59,19 @@ const NavBar = () => {
         ) : (
           console.log(null)
         )}
-
-        {!isSearching ? (
-          <div className="self-center flex gap-5">
+        <div className="self-center flex gap-5">
+          {!isSearching ? (
             <MdOutlineSearch
               className="self-center size-7 mr-3 cursor-pointer"
               onClick={handleSearch}
             />
-            <Link path="/bookmarked">
-              <FaRegBookmark className="self-center mr-3 cursor-pointer size-6" />
-            </Link>
-          </div>
-        ) : (
-          console.log(null)
-        )}
+          ) : (
+            console.log(null)
+          )}{" "}
+        </div>
+        <Link to="/bookmarked">
+          <FaRegBookmark className="self-center mr-3 cursor-pointer size-6" />
+        </Link>
       </div>
     </div>
   );
