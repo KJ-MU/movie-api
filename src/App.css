@@ -52,7 +52,8 @@
 }
 
 .carousel__container::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Webkit browsers */
+  display: flex;
+  /* //Hide scrollbar for Webkit browsers */
 }
 
 .carousel__slide {
